@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>andries-sebola-@PORTFOLIO</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="templatemo">
+	<!-- 
+        Lavish HTML CSS Template
+        https://templatemo.com/tm-458-lavish
+        -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- animate -->
+	<link rel="stylesheet" href="css/animate.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- font-awesome -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- google font -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700,800' rel='stylesheet' type='text/css'>
+	<!-- fullpage -->
+	<link rel="stylesheet" href="css/jquery.fullPage.css">
+	<!-- custom -->
+	<link rel="stylesheet" href="css/templatemo-style.css">
+
+	<!-- html2pdf library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+		integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- Generate pdf from html -->
+	<script src="js/generatePDF.js"></script>
+
+	<!-- smtp link -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+	<!-- sending email  -->
+	<script type="text/javascript">
+		function sendEmail() {
+			const name = document.getElementById("name");
+			const message = document.getElementById("message");
+			const email = document.getElementById("email");
+
+			Email.send({
+				Host: "smtp.gmail.com",
+				Username: "techs2280@gmail.com",
+				Password: "andries@M1998!",
+				To: 'andriesmpontsheng@gmail.com',
+				From: "techs2099@gmail.com",
+				Subject: `Request for contact from ${name}`,
+				Body: `${message}
+
+		please reply or contact the person on the following email
+		${email}`,
+			})
+				.then((res) => {
+					alert("mail sent successfully ")
+				})
+				.catch((err) => {
+					console.log(err, "====");
+				});
+		}
+	</script>
+</head>
+
+<body>
+	<div id="fullpage">
+
+		<!-- start home -->
+		<div id="home" class="section">
+			
+			<div class="col-md-2 cover-div">
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8 wow fadeIn" data-wow-delay="0.9s">
+						<h3>PORTFOLIO OF</h3>
+						<h1>Andries Mpontseng Sebola</h1>
+						<h2 class="rotate">Front-End Developer,Back-End Developer,Designer, UI &AMP; UX , Database
+							Design &AMP; Developer</h2>
+						<p>I am a IT ( Software developer ) graduated at Tswane University of Technology in 2021.
+						</p>
+						<a href="#work" class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="1s">Get
+							started</a>
+						<!-- <button onclick="GeneratePDF()" onclick class="btn btn-default smoothScroll wow fadeInUp"
+							data-wow-delay="1s">
+							Generate PDF</button> -->
+						<a href="./files/SebolaAndries-Resume.pdf" download
+							class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="1s">
+							Download Resume</a>
+					</div>
+					 <div class="col-md-2">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end home -->
+
+	<!-- start work -->
+	<div id="work" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 wow bounce">
+					<h2>WHAT I DO</h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 col-xs-11 wow fadeInUp" data-wow-delay="0.6s">
+					<div class="media">
+						<div class="media-object media-left">
+							<i class="fa fa-mobile"></i>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">Native Mobile Development</h3>
+							<p>I am a skilled mobile developer worked on multiple projects with multiple frameworks
+								like React Native, Xamarin,Phonegap to develop functional applications.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-xs-11 wow fadeInUp" data-wow-delay="0.6s">
+					<div class="media">
+						<div class="media-object media-left">
+							<i class="fa fa-laptop"></i>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">Web and Desktop development</h3>
+							<p>I develop responsive website and destop application working with React redus </p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-xs-11 wow fadeInUp" data-wow-delay="0.6s">
+					<div class="media">
+						<div class="media-object media-left">
+							<i class="fa fa-paper-plane"></i>
+						</div>
+						<div class="media-body">
+							<h3 class="media-heading">UI &AMP; UX Design</h3>
+							<p>I am a skilled wireframe designer working with tools like Figma and InVision</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end work -->
+
+	<!-- start about -->
+	<div id="about" class="section">
+		<div class="container">
+			<div class="row">
+				<div>
+					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.9s">
+						<h2> Skills and specialities</h2>
+						<p>Statistical set of skills i have learned for 3+ years accomplishing functional and
+							responsive product and all other tools i am skilled working with for designing the applications and storing data.</p>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="flext-container">
+					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
+
+						<h4>Programming Languages</h4>
+						<span class="text-top">Javascript <small>75%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+						</div>
+						<span>Typescript <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>C# <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+						<span>Java <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>C++ <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>PL/SQL <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+					</div>
+
+					<!-- FrameWork -->
+					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
+						<h4>Development Framework</h4>
+						<span class="text-top">xamarin <small>75%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+						</div>
+						<span>React Native <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>React redux <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+						<span>Express JS <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="flext-container">
+					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
+
+						<h4>IDE</h4>
+						<span class="text-top">Android Studio <small>75%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+						</div>
+						<span>Visual Studio <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>Visual Studio code <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+
+					</div>
+
+					<!-- FrameWork -->
+					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
+						<h4>Other tools</h4>
+						<span class="text-top">Figman <small>75%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+						</div>
+						<span>MongoDB <small>80%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span>Firebase <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+						<span>MySql <small>70%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+						<span>Photoshop <small>60%</small></span>
+						<div class="progress">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+	<!-- end about -->
+
+
+
+	<!-- start portfolio -->
+	<div id="portfolio" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="wow bounce">PORTFOLIO</h2>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/SunStar">
+						<div class="portfolio-thumb">
+							<img src="images/Sunstar.jpg" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>SunStar</h4>
+								<h5>Developer: Andries sebola</h5>
+								<h6>Hotet booking and management system consisting of 4 subsystems and a seperate
+									Back-End</h6>
+								<h6>REACT NATIVE, Typescript, Express JS, MongoDB</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/E-Poll">
+						<div class="portfolio-thumb">
+							<img src="images/epoll.jpg" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>E-poll</h4>
+								<h5>Developer: Andries sebola</h5>
+								<h6>Tutiary voting mobile system for student to elect on the perty of their own choice
+								</h6>
+								<h6>PHONEGAP, JAVA, Firebase</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/help_desk">
+						<div class="portfolio-thumb">
+							<img src="images/helpdesk.jpg" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>Helpdesk</h4>
+								<h5>Developer: Andries sebola</h5>
+								<h6>Organisational Technical support for employees to request technical support service from the technicians by stating the issue they are experiencing and also provide illustrations for better clarity to the technician.
+								</h6>
+								<h6>PHONEGAP, JAVA, Firebase</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/E_commerce">
+						<div class="portfolio-thumb">
+							<img src="images/e-commerce.png" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>E-commerce</h4>
+								<h5>Developer: Andries sebola &AMP; Zanele</h5>
+								<h6>E-commerce front-end design
+								</h6>
+								<h6>REACT NATIVE, Typescript</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/EduSharp">
+						<div class="portfolio-thumb">
+							<img src="images/edusharp.jpg" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>Edusharp</h4>
+								<h5>Developer: Codetribe group allience </h5>
+								<h6>Secondery school community based system that will help learners and teachers engage academically at ease and share posible material availabe
+								</h6>
+								<h6>REACT NATIVE, Javascript, Firebase</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
+					<a href="https://github.com/andries-ui/MyChat">
+						<div class="portfolio-thumb">
+							<img src="images/appchat.jpg" class="image-container" alt="portfolio img">
+							<div class="portfolio-overlay">
+								<h4>AppChat</h4>
+								<h5>Developer: Andries sebola</h5>
+								<h6>Ggroup voice call design application
+								</h6>
+								<h6>PHONEGAP, JAVA</h6>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end portfolio -->
+
+	<!-- start contact -->
+	<div id="contact" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-lg-offset-1 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+					<address>
+						<p class="contact-title">CONTACT ME</p>
+						<p><i class="fa fa-phone"></i> +27 63 783 8676</p>
+						<p><i class="fa fa-envelope-o"></i> andriesmpontsheng@gmail.com</p>
+						<p><i class="fa fa-map-marker"></i> South Africa, Limpopo, Polokwane</p>
+					</address>
+				</div>
+				<div class="col-lg-6 col-md-6 col-xs-10 wow fadeInUp" data-wow-delay="0.6s">
+					<form role="form" method="post">
+						<input name="name" type="text" class="form-control" id="name" placeholder="Your Name">
+						<input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
+						<textarea name="message" rows="5" class="form-control" id="message"
+							placeholder="Your Message"></textarea>
+						<input onclick="sendEmail()" name="send" type="submit" class="form-control" id="send"
+							value="Send Notice">
+					</form>
+				</div>
+				<div class="col-md-1 col-sm-1"></div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact -->
+
+	<!-- start footer -->
+	<footer>
+		<div class="col-md-12 wow fadeIn" data-wow-delay="0.9s">
+			<p>Copyright &copy; 2022</p>
+			<hr>
+			<ul class="social-icon">
+				<li><a href="https://github.com/andries-ui" class="fa fa-github fa-lg"></a></li>
+				<li><a href="https://www.linkedin.com/in/andries-sebola-0ba3851b1/" class="fa fa-linkedin fa-lg"></a>
+				</li>
+			</ul>
+			<br />
+		</div>
+	</footer>
+	<!-- end footer -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+	<!-- bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- fullpage -->
+	<script src="js/jquery.fullPage.js"></script>
+	<!-- smoothScroll -->
+	<script src="js/smoothscroll.js"></script>
+	<!-- wow -->
+	<script src="js/wow.min.js"></script>
+	<!-- text rotater -->
+	<script src="js/jquery.simple-text-rotator.js"></script>
+	<!-- custom -->
+	<script src="js/custom.js"></script>
+
+</body>
+
+</html>
