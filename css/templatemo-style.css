@@ -328,6 +328,102 @@ h6 {
     width: 100%;
 }
 
+/* Custom Portfolio Card Styles */
+#portfolio .card {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+    border: 1px solid #444;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#portfolio .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: #007bff;
+}
+
+#portfolio .card-title {
+    color: #ffffff !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+#portfolio .card-text {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+#portfolio .badge {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+/* Technology-specific badge colors */
+#portfolio .badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+#portfolio .badge.bg-primary {
+    background-color: #007bff !important;
+}
+
+#portfolio .badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+#portfolio .badge.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+#portfolio .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+#portfolio .badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+#portfolio .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+#portfolio .btn-outline-primary:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+
+#portfolio .card-body {
+    padding: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #portfolio .card-body {
+        padding: 20px;
+    }
+
+    #portfolio .card-title {
+        font-size: 1.1rem;
+    }
+
+    #portfolio .card-text {
+        font-size: 0.9rem;
+    }
+}
+
 #portfolio .portfolio-thumb {
     overflow: hidden;
     position: relative;

@@ -1,16 +1,41 @@
 function GeneratePDF() {
-	const element = document.getElementById("portfolio");
+	const element = document.getElementById("resume-pdf");
 
 	try {
-		html2pdf().from(element).save().then((res) => {
-			console.log(res);
+		// Show the hidden resume section temporarily
+		element.style.display = "block";
+		element.style.position = "relative";
+		element.style.left = "auto";
+
+		const opt = {
+			margin: 1,
+			filename: 'Andries-Sebola-Resume.pdf',
+			image: { type: 'jpeg', quality: 0.98 },
+			html2canvas: { scale: 2, useCORS: true },
+			jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+		};
+
+		html2pdf().set(opt).from(element).save().then((res) => {
+			console.log('PDF generated successfully');
+			// Hide the resume section again
+			element.style.display = "none";
+			element.style.position = "absolute";
+			element.style.left = "-9999px";
 		})
-			.catch((err) => {
-				console.log(err, "==>>==>>");
-			});
+		.catch((err) => {
+			console.log(err, "==>>==>>");
+			// Hide the resume section again even on error
+			element.style.display = "none";
+			element.style.position = "absolute";
+			element.style.left = "-9999px";
+		});
 
 	} catch (err) {
 		console.log(err, "==");
+		// Hide the resume section again even on error
+		element.style.display = "none";
+		element.style.position = "absolute";
+		element.style.left = "-9999px";
 	}
 }
 

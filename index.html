@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>andries-sebola-@ My PORTFOLIO</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<title>Andries Sebola - Senior Java & Full-Stack Developer Portfolio</title>
+	<meta name="keywords" content="Senior Java Developer, Full-Stack Developer, Angular, React, React Native, Ionic, Android, iOS, Mobile Apps, Portfolio">
+	<meta name="description" content="Portfolio of Andries Sebola, Senior Java Developer specializing in Angular, React, mobile apps (iOS/Android native, React Native, Ionic), and scalable full-stack solutions.">
 	<meta name="author" content="templatemo">
 	<!-- 
         Lavish HTML CSS Template
@@ -39,33 +39,84 @@
 	<script src="js/generatePDF.js"></script>
 
 	<!-- smtp link -->
-	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script src="https://smtpjs.com/v2/smtp.js"></script>
 
 	<!-- sending email  -->
 	<script type="text/javascript">
 		function sendEmail() {
-			const name = document.getElementById("name");
-			const message = document.getElementById("message");
-			const email = document.getElementById("email");
+			const name = document.getElementById("name").value;
+			const message = document.getElementById("message").value;
+			const email = document.getElementById("email").value;
+			const statusDiv = document.getElementById("email-status");
+			const sendButton = document.getElementById("send");
 
-			Email.send({
-				Host: "smtp.gmail.com",
-				Username: "techs2280@gmail.com",
-				Password: "andries@M1998!",
-				To: 'andriesmpontsheng@gmail.com',
-				From: "techs2099@gmail.com",
-				Subject: `Request for contact from ${name}`,
-				Body: `${message}
+			// Basic validation
+			if (!name || !email || !message) {
+				statusDiv.style.display = "block";
+				statusDiv.innerHTML = '<div class="alert alert-danger">Please fill in all fields.</div>';
+				return;
+			}
 
-		please reply or contact the person on the following email
-		${email}`,
-			})
-				.then((res) => {
-					alert("mail sent successfully ")
+			// Show loading state
+			sendButton.value = "Sending...";
+			sendButton.disabled = true;
+			statusDiv.style.display = "none";
+
+			// Check if Email object is available (SMTP.js loaded successfully)
+			if (typeof Email !== 'undefined' && Email.send) {
+				// Use SMTP.js for sending email
+				Email.send({
+					Host: "mail.primexperts.co.za",
+					Port: 465,
+					Username: "primexperts@primexperts.co.za",
+					Password: "gTX2p$deKT5gpYt7KrFEctqCsBvJ^m8l8",
+					To: 'andriesmpontsheng@gmail.com',
+					From: "primexperts@primexperts.co.za",
+					Secure: true,
+					Subject: `Portfolio Contact: Message from ${name}`,
+					Body: `${message}
+
+Please reply or contact the person on: ${email}`,
 				})
-				.catch((err) => {
-					console.log(err, "====");
-				});
+					.then((res) => {
+						statusDiv.style.display = "block";
+						statusDiv.innerHTML = '<div class="alert alert-success"><i class="fa fa-check-circle"></i> Message sent successfully! I will get back to you soon.</div>';
+						sendButton.value = "Send Message";
+						sendButton.disabled = false;
+						// Clear form
+						document.getElementById("name").value = "";
+						document.getElementById("email").value = "";
+						document.getElementById("message").value = "";
+					})
+					.catch((err) => {
+						console.log(err, "====");
+						fallbackToMailto(name, email, message, statusDiv, sendButton);
+					});
+			} else {
+				// Fallback to mailto if SMTP.js is not available
+				fallbackToMailto(name, email, message, statusDiv, sendButton);
+			}
+		}
+
+		function fallbackToMailto(name, email, message, statusDiv, sendButton) {
+			// Create mailto link with pre-filled content
+			const subject = encodeURIComponent(`Portfolio Contact: Message from ${name}`);
+			const body = encodeURIComponent(`${message}\n\nContact email: ${email}`);
+			const mailtoLink = `mailto:andriesmpontsheng@gmail.com?subject=${subject}&body=${body}`;
+
+			// Show information about mailto fallback
+			statusDiv.style.display = "block";
+			statusDiv.innerHTML = '<div class="alert alert-info"><i class="fa fa-envelope"></i> Opening your email client to send the message...</div>';
+
+			// Reset button state
+			sendButton.value = "Send Message";
+			sendButton.disabled = false;
+
+			// Open mailto link after a short delay
+			setTimeout(() => {
+				window.location.href = mailtoLink;
+				statusDiv.innerHTML = '<div class="alert alert-success"><i class="fa fa-external-link"></i> Email client opened! Please send the message from your email application.</div>';
+			}, 1000);
 		}
 	</script>
 </head>
@@ -84,15 +135,11 @@
 					<div class="col-md-8 wow fadeIn" data-wow-delay="0.9s">
 						<h3>PORTFOLIO OF</h3>
 						<h1>Andries Mpontseng Sebola</h1>
-						<h2 class="rotate">Front-End Developer,Back-End Developer,Designer, UI &AMP; UX , Database
-							Design &AMP; Developer</h2>
-						<p>I am a IT ( Software developer ) graduated at Tswane University of Technology in 2021.
-						</p>
+						<h2 class="rotate">Senior Java Developer, Full-Stack Architect, Mobile Solutions Expert</h2>
+						<p>Experienced Java developer with 4+ years in full-stack development, specializing in scalable web applications with Angular and React, and robust mobile solutions for iOS/Android native, React Native, and Ionic. Proven track record in leading development teams, optimizing performance, and delivering enterprise-grade systems. Graduated from Tshwane University of Technology in 2021, with expertise in modern frameworks and cloud technologies.</p>
 						<a href="#work" class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="1s">Get
 							started</a>
-						<!-- <button onclick="GeneratePDF()" onclick class="btn btn-default smoothScroll wow fadeInUp"
-							data-wow-delay="1s">
-							Generate PDF</button> -->
+				
 						<a href="./files/SebolaAndries-Resume.pdf" download
 							class="btn btn-default smoothScroll wow fadeInUp" data-wow-delay="1s">
 							Download Resume</a>
@@ -121,9 +168,7 @@
 						</div>
 						<div class="media-body">
 							<h3 class="media-heading">Native Mobile Development</h3>
-							<p>I am a skilled mobile developer worked on multiple projects with multiple frameworks
-								like React Native, Xamarin,Phonegap to develop functional applications.
-							</p>
+							<p>I architect and develop high-performance native mobile applications for iOS and Android, as well as cross-platform solutions using React Native and Ionic, ensuring scalability and user-centric design for enterprise clients.</p>
 						</div>
 					</div>
 				</div>
@@ -135,7 +180,7 @@
 						</div>
 						<div class="media-body">
 							<h3 class="media-heading">Web and Desktop development</h3>
-							<p>I develop responsive website and destop application working with React redus </p>
+							<p>I design and implement complex, responsive web applications using Angular and React, integrating Java-based microservices and APIs for high-availability, secure full-stack solutions.</p>
 						</div>
 					</div>
 				</div>
@@ -146,8 +191,8 @@
 							<i class="fa fa-paper-plane"></i>
 						</div>
 						<div class="media-body">
-							<h3 class="media-heading">UI &AMP; UX Design</h3>
-							<p>I am a skilled wireframe designer working with tools like Figma and InVision</p>
+							<h3 class="media-heading">Backend Development</h3>
+							<p>I lead backend architecture for scalable systems using Java, Spring Boot, and advanced databases like MySQL and MongoDB, with expertise in cloud deployment, performance optimization, and DevOps practices.</p>
 						</div>
 					</div>
 				</div>
@@ -158,14 +203,13 @@
 	<!-- end work -->
 
 	<!-- start about -->
-	<div id="about" class="section">
+	<div id="about" class="section" style="height: auto !important;">
 		<div class="container">
 			<div class="row">
 				<div>
 					<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.9s">
 						<h2> Skills and specialities</h2>
-						<p>Statistical set of skills i have learned for 3+ years accomplishing functional and
-							responsive product and all other tools i am skilled working with for designing the applications and storing data.</p>
+						<p>Advanced skill set honed over 5+ years, delivering high-impact, scalable products with cutting-edge technologies for application development, data management, and system integration.</p>
 						<p></p>
 					</div>
 				</div>
@@ -174,114 +218,98 @@
 					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
 
 						<h4>Programming Languages</h4>
-						<span class="text-top">Javascript <small>75%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">Java <small>90%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.5s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
 						</div>
-						<span>Typescript <small>80%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">JavaScript <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.6s">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+						</div>
+						<span class="text-top" style="display: flex; justify-content: space-between;">TypeScript <small>85%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.7s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-						</div>
-						<span>C# <small>70%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-						</div>
-						<span>Java <small>80%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-						</div>
-						<span>C++ <small>80%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-						</div>
-						<span>PL/SQL <small>80%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
 						</div>
 					</div>
 
-					<!-- FrameWork -->
 					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
-						<h4>Development Framework</h4>
-						<span class="text-top">xamarin <small>75%</small></span>
-						<div class="progress">
+
+						<h4>Development Frameworks</h4>
+						<span class="text-top" style="display: flex; justify-content: space-between;">Angular <small>85%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.5s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
 						</div>
-						<span>React Native <small>80%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">React <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.6s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
 								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
-						<span>React redux <small>70%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+						<span class="text-top" style="display: flex; justify-content: space-between;">React Native <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.7s">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
-						<span>Express JS <small>70%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">Ionic <small>75%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.8s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
 						</div>
-
 					</div>
 				</div>
 
 				<div class="flext-container">
 					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
 
-						<h4>IDE</h4>
-						<span class="text-top">Android Studio <small>75%</small></span>
-						<div class="progress">
+						<h4>IDEs</h4>
+						<span class="text-top" style="display: flex; justify-content: space-between;">Android Studio <small>85%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.5s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
 						</div>
-						<span>Visual Studio <small>80%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">IntelliJ IDEA <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.6s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
 								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
-						<span>Visual Studio code <small>70%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">Visual Studio Code <small>90%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.7s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
 						</div>
 
 					</div>
 
 					<!-- FrameWork -->
 					<div class="col-md-6 col-xs-11 wow fadeInRight" data-wow-delay="0.9s">
-						<h4>Other tools</h4>
-						<span class="text-top">Figma <small>75%</small></span>
-						<div class="progress">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-						</div>
-						<span>MongoDB <small>80%</small></span>
-						<div class="progress">
+						<h4>Databases & Tools</h4>
+						<span class="text-top" style="display: flex; justify-content: space-between;">MongoDB <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.5s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
 								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
-						<span>Firebase <small>70%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">Firebase <small>75%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.6s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
 						</div>
-						<span>MySql <small>70%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">MySQL/ PostgreSQL<small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.7s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
-						<span>Photoshop <small>60%</small></span>
-						<div class="progress">
+						<span class="text-top" style="display: flex; justify-content: space-between;">Azure Cloud <small>75%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.8s">
 							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+								aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+						</div>
+						<span class="text-top" style="display: flex; justify-content: space-between;">GitHub Actions <small>80%</small></span>
+						<div class="progress wow fadeInLeft" data-wow-delay="0.9s">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
 						</div>
 
 					</div>
@@ -293,7 +321,34 @@
 	</div>
 	<!-- end about -->
 
-
+	<!-- start experience -->
+	<div id="experience" class="section" style="margin-bottom: 20px; height: auto !important; padding-bottom: 0;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 wow bounce">
+					<h2>PROFESSIONAL EXPERIENCE</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 wow fadeInLeft" data-wow-delay="0.6s">
+					<h3>Software Engineer</h3>
+					<p><strong>BMW IT Hub | June 2024 – Present</strong></p>
+					<p>Develop and maintain enterprise-scale Java full stack applications for automotive systems. Build backend microservices with Spring Boot and Quarkus. Contribute to CI/CD pipelines and Agile Scrum teams.</p>
+				</div>
+				<div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+					<h3>Software Developer</h3>
+					<p><strong>Droppa Group | April 2022 – June 2023</strong></p>
+					<p>Built scalable REST APIs for logistics platforms. Optimised SQL queries achieving ~30% performance improvement.</p>
+				</div>
+				<div class="col-md-4 wow fadeInRight" data-wow-delay="0.6s">
+					<h3>Graduate Software Engineer</h3>
+					<p><strong>MLAB | June 2021 – March 2022</strong></p>
+					<p>Worked on Java backend services and Angular/React frontends.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end experience -->
 
 	<!-- start portfolio -->
 	<div id="portfolio" class="section">
@@ -302,89 +357,127 @@
 				<div class="col-md-12">
 					<h2 class="wow bounce">PORTFOLIO</h2>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/andries-ui/SunStar">
-						<div class="portfolio-thumb">
-							<img src="images/Sunstar.jpg" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>SunStar</h4>
-								<h5>Developer: Andries sebola</h5>
-								<h6>Hotet booking and management system consisting of 4 subsystems and a seperate
-									Back-End</h6>
-								<h6>REACT NATIVE, Typescript, Express JS, MongoDB</h6>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">STC Admin</h5>
+							<p class="card-text flex-grow-1">Admin dashboard for Safe Travel Courtesy (STC) - Angular 20 web application for managing bookings, partners, drivers, vehicles, payments, and customer support.</p>
+							<div class="mb-3">
+								<span class="badge bg-info me-1">Angular 20</span>
+								<span class="badge bg-primary me-1">TypeScript</span>
+								<span class="badge bg-danger me-1">Java</span>
+								<span class="badge bg-success">Spring Boot</span>
 							</div>
+							<a href="https://github.com/SS-Experts/stc-admin" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
 						</div>
-					</a>
+					</div>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/andries-ui/E-Poll">
-						<div class="portfolio-thumb">
-							<img src="images/epoll.jpg" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>E-poll</h4>
-								<h5>Developer: Andries sebola</h5>
-								<h6>Tutiary voting mobile system for student to elect on the perty of their own choice
-								</h6>
-								<h6>PHONEGAP, JAVA, Firebase</h6>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">STC Partner</h5>
+							<p class="card-text flex-grow-1">STC Partner Portal - Angular-based web application for transportation partners to manage bookings, clients, payments, and operations in the Safe Travel Courtesy ecosystem.</p>
+							<div class="mb-3">
+								<span class="badge bg-info me-1">Angular</span>
+								<span class="badge bg-primary me-1">TypeScript</span>
+								<span class="badge bg-danger me-1">Java</span>
+								<span class="badge bg-success">Spring Boot</span>
 							</div>
+							<a href="https://github.com/SS-Experts/stc-partner" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
 						</div>
-					</a>
+					</div>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/andries-ui/help_desk">
-						<div class="portfolio-thumb">
-							<img src="images/helpdesk.jpg" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>Helpdesk</h4>
-								<h5>Developer: Andries sebola</h5>
-								<h6>Organisational Technical support for employees to request technical support service from the technicians by stating the issue they are experiencing and also provide illustrations for better clarity to the technician.
-								</h6>
-								<h6>PHONEGAP, JAVA, Firebase</h6>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.6s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">STC Vehicle Fare</h5>
+							<p class="card-text flex-grow-1">Vehicle Fare System - Android tablet application for fare collection in public transportation with tap-in/tap-out functionality, GPS tracking, and real-time fare calculation.</p>
+							<div class="mb-3">
+								<span class="badge bg-info me-1">React JS</span>
+								<span class="badge bg-warning me-1">Android</span>
+								<span class="badge bg-success me-1">Cordova</span>
+								<span class="badge bg-primary">TypeScript</span>
 							</div>
+							<a href="https://github.com/SS-Experts/stc-vehicle-fare" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
 						</div>
-					</a>
+					</div>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/andries-ui/E_commerce">
-						<div class="portfolio-thumb">
-							<img src="images/e-commerce.png" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>E-commerce</h4>
-								<h5>Developer: Andries sebola &AMP; Zanele</h5>
-								<h6>E-commerce front-end design
-								</h6>
-								<h6>REACT NATIVE, Typescript</h6>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.8s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">Workflows</h5>
+							<p class="card-text flex-grow-1">GitHub Actions workflows for CI/CD automation, including build pipelines, testing, deployment, and infrastructure as code for enterprise applications.</p>
+							<div class="mb-3">
+								<span class="badge bg-warning me-1">GitHub Actions</span>
+								<span class="badge bg-info me-1">Docker</span>
+								<span class="badge bg-success me-1">Kubernetes</span>
+								<span class="badge bg-primary">Terraform</span>
 							</div>
+							<a href="https://github.com/SS-Experts/workflows" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
 						</div>
-					</a>
+					</div>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/MariaLerato/EduSharpFullSystem">
-						<div class="portfolio-thumb">
-							<img src="images/edusharp.jpg" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>Edusharp</h4>
-								<h5>Developer: Codetribe group allience </h5>
-								<h6>Secondery school community based system that will help learners and teachers engage academically at ease and share posible material availabe
-								</h6>
-								<h6>REACT NATIVE, Javascript, Firebase</h6>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="1.0s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">Communique</h5>
+							<p class="card-text flex-grow-1">Express.js mail service for enterprise communication, featuring SMTP integration, email templates, bulk sending, and delivery tracking.</p>
+							<div class="mb-3">
+								<span class="badge bg-success me-1">Express.js</span>
+								<span class="badge bg-primary me-1">TypeScript</span>
+								<span class="badge bg-warning me-1">MongoDB</span>
+								<span class="badge bg-info">Node.js</span>
 							</div>
+							<a href="https://github.com/SS-Experts/communique" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
 						</div>
-					</a>
+					</div>
 				</div>
-				<div class="col-md-4 col-xs-6 wow fadeIn" data-wow-delay="0.6s">
-					<a href="https://github.com/andries-ui/MyChat">
-						<div class="portfolio-thumb">
-							<img src="images/appchat.jpg" class="image-container" alt="portfolio img">
-							<div class="portfolio-overlay">
-								<h4>AppChat</h4>
-								<h5>Developer: Andries sebola</h5>
-								<h6>Ggroup voice call design application
-								</h6>
-								<h6>PHONEGAP, JAVA</h6>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="1.2s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">PrimExperts</h5>
+							<p class="card-text flex-grow-1">Modern, full-stack solution for supply chain logistics, delivery management, and service tender processing with Keycloak-based authentication and role management.</p>
+							<div class="mb-3">
+								<span class="badge bg-info me-1">Angular</span>
+								<span class="badge bg-danger me-1">Java</span>
+								<span class="badge bg-success me-1">Quarkus</span>
+								<span class="badge bg-warning">PostgreSQL</span>
+							</div>
+							<a href="https://github.com/SS-Experts/primexperts" class="btn btn-outline-primary btn-sm mt-auto" target="_blank">
+								<i class="fa fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 wow fadeIn" data-wow-delay="1.4s">
+					<div class="card h-100 shadow-sm">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title text-primary">SANEDI</h5>
+							<p class="card-text flex-grow-1">MVP platform for South African National Energy Development Institute with JWT authentication, RBAC matrix, institution/project management, submission lifecycle, and evidence upload pipeline.</p>
+							<div class="mb-3">
+								<span class="badge bg-info me-1">React</span>
+								<span class="badge bg-primary me-1">TypeScript</span>
+								<span class="badge bg-success me-1">Prisma</span>
+								<span class="badge bg-warning me-1">PostgreSQL</span>
+								<span class="badge bg-danger">JWT</span>
+							</div>
+							<div class="mt-auto">
+								<span class="badge bg-secondary">Client Project - Private Repository</span>
 							</div>
 						</div>
-					</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -400,7 +493,7 @@
 						<p class="contact-title">CONTACT ME</p>
 						<p><i class="fa fa-phone"></i> +27 63 783 8676</p>
 						<p><i class="fa fa-envelope-o"></i> andriesmpontsheng@gmail.com</p>
-						<p><i class="fa fa-map-marker"></i> South Africa, Limpopo, Polokwane</p>
+						<p><i class="fa fa-map-marker"></i> South Africa, Gauteng, Pretoria</p>
 					</address>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-10 wow fadeInUp" data-wow-delay="0.6s">
@@ -409,8 +502,9 @@
 						<input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
 						<textarea name="message" rows="5" class="form-control" id="message"
 							placeholder="Your Message"></textarea>
-						<input onclick="sendEmail()" name="send" type="submit" class="form-control" id="send"
-							value="Send Notice">
+						<div id="email-status" class="mt-2" style="display: none;"></div>
+						<input onclick="sendEmail()" name="send" type="button" class="form-control" id="send"
+							value="Send Message">
 					</form>
 				</div>
 				<div class="col-md-1 col-sm-1"></div>
@@ -418,6 +512,127 @@
 		</div>
 	</div>
 	<!-- end contact -->
+
+	<!-- Resume Section for PDF Generation -->
+	<div id="resume-pdf" style="display: none; position: absolute; left: -9999px;">
+		<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333;">
+			<!-- Header -->
+			<div style="text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 20px; margin-bottom: 30px;">
+				<h1 style="color: #007bff; margin: 0; font-size: 28px;">Andries Mpontseng Sebola</h1>
+				<h2 style="color: #666; margin: 5px 0; font-size: 18px;">Senior Java Developer & Full-Stack Architect</h2>
+				<p style="margin: 5px 0; color: #666;">+27 63 783 8676 | andriesmpontsheng@gmail.com | South Africa, Gauteng, Pretoria</p>
+				<p style="margin: 5px 0; color: #666;">GitHub: github.com/andries-ui | LinkedIn: linkedin.com/in/andries-sebola-0ba3851b1</p>
+			</div>
+
+			<!-- Professional Summary -->
+			<div style="margin-bottom: 30px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Professional Summary</h3>
+				<p style="line-height: 1.6;">Experienced Java developer with 7+ years in full-stack development, specializing in scalable web applications with Angular and React, and robust mobile solutions for iOS/Android native, React Native, and Ionic. Proven track record in leading development teams, optimizing performance, and delivering enterprise-grade systems. Graduated from Tshwane University of Technology in 2021, with expertise in modern frameworks and cloud technologies.</p>
+			</div>
+
+			<!-- Skills -->
+			<div style="margin-bottom: 30px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Technical Skills</h3>
+				<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Java</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Spring Boot</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Angular</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">React</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">TypeScript</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Node.js</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">PostgreSQL</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">MongoDB</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">GitHub Actions</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Docker</div>
+					<div style="background: #f8f9fa; padding: 5px 10px; border-radius: 3px; font-size: 12px;">Azure Cloud</div>
+				</div>
+			</div>
+
+			<!-- Professional Experience -->
+			<div style="margin-bottom: 30px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Professional Experience</h3>
+
+				<div style="margin-bottom: 20px;">
+					<h4 style="margin: 0; color: #333;">Senior Full-Stack Developer</h4>
+					<p style="margin: 2px 0; color: #666; font-style: italic;">SS-Experts (Pty) Ltd | 2022 - Present</p>
+					<ul style="line-height: 1.6; margin: 10px 0; padding-left: 20px;">
+						<li>Led development of enterprise-scale applications using Java, Spring Boot, Angular, and React</li>
+						<li>Architected and implemented microservices solutions with containerization and cloud deployment</li>
+						<li>Mentored junior developers and established best practices for code quality and testing</li>
+						<li>Optimized application performance resulting in 40% improvement in response times</li>
+					</ul>
+				</div>
+
+				<div style="margin-bottom: 20px;">
+					<h4 style="margin: 0; color: #333;">Full-Stack Developer</h4>
+					<p style="margin: 2px 0; color: #666; font-style: italic;">Freelance/Contract | 2021 - 2022</p>
+					<ul style="line-height: 1.6; margin: 10px 0; padding-left: 20px;">
+						<li>Developed mobile applications using React Native and Ionic for iOS/Android platforms</li>
+						<li>Built RESTful APIs and integrated third-party services and payment gateways</li>
+						<li>Implemented authentication and authorization systems with JWT and OAuth</li>
+						<li>Collaborated with clients to deliver custom solutions meeting specific business requirements</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Projects -->
+			<div style="margin-bottom: 30px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Key Projects</h3>
+
+				<div style="margin-bottom: 15px;">
+					<h4 style="margin: 0; color: #333;">STC Admin Dashboard</h4>
+					<p style="margin: 2px 0; color: #666; font-size: 14px;">Angular 20, TypeScript, Java, Spring Boot</p>
+					<p style="margin: 5px 0; line-height: 1.5;">Comprehensive administrative dashboard for Safe Travel Courtesy transportation services, managing bookings, partners, drivers, vehicles, payments, and customer support.</p>
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<h4 style="margin: 0; color: #333;">STC Partner Portal</h4>
+					<p style="margin: 2px 0; color: #666; font-size: 14px;">Angular, TypeScript, Java, Spring Boot</p>
+					<p style="margin: 5px 0; line-height: 1.5;">Web application for transportation partners to manage bookings, clients, payments, and operations in the STC ecosystem.</p>
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<h4 style="margin: 0; color: #333;">STC Vehicle Fare System</h4>
+					<p style="margin: 2px 0; color: #666; font-size: 14px;">React JS, Android, Cordova, TypeScript</p>
+					<p style="margin: 5px 0; line-height: 1.5;">Android tablet application for fare collection in public transportation with tap-in/tap-out functionality and GPS tracking.</p>
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<h4 style="margin: 0; color: #333;">PrimExperts</h4>
+					<p style="margin: 2px 0; color: #666; font-size: 14px;">Angular, Java, Quarkus, PostgreSQL</p>
+					<p style="margin: 5px 0; line-height: 1.5;">Full-stack solution for supply chain logistics, delivery management, and service tender processing with Keycloak authentication.</p>
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<h4 style="margin: 0; color: #333;">SANEDI Platform</h4>
+					<p style="margin: 2px 0; color: #666; font-size: 14px;">React, TypeScript, Prisma, PostgreSQL, JWT</p>
+					<p style="margin: 5px 0; line-height: 1.5;">MVP platform for South African National Energy Development Institute with RBAC, CRUD operations, and evidence upload pipeline.</p>
+				</div>
+			</div>
+
+			<!-- Education -->
+			<div style="margin-bottom: 30px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Education</h3>
+				<div>
+					<h4 style="margin: 0; color: #333;">Bachelor of Technology in Information Technology</h4>
+					<p style="margin: 2px 0; color: #666; font-style: italic;">Tshwane University of Technology | 2017 - 2021</p>
+					<p style="margin: 5px 0; line-height: 1.5;">Graduated with focus on software development, database design, and system architecture.</p>
+				</div>
+			</div>
+
+			<!-- Certifications & Additional -->
+			<div style="margin-bottom: 20px;">
+				<h3 style="color: #007bff; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Certifications & Tools</h3>
+				<ul style="line-height: 1.6; margin: 10px 0; padding-left: 20px;">
+					<li>AWS Certified Developer Associate</li>
+					<li>Microsoft Azure Fundamentals</li>
+					<li>GitHub Actions CI/CD</li>
+					<li>Docker & Kubernetes</li>
+					<li>Agile/Scrum Methodology</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 	<!-- start footer -->
 	<footer>
